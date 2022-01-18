@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div>
+    <h2>Input binary:</h2>
+    <form id="form-words" method="post" action="search" enctype="multipart/form-data">
+        <label for="input-left">Left:</label><textarea id="input-left" name="left"></textarea>
+        <label for="input-top">Top:</label><textarea id="input-top" name="top"></textarea>
+        <label for="input-right">Right:</label><textarea id="input-right" name="right"></textarea>
+        <label for="input-bottom">Bottom:</label><textarea id="input-bottom" name="bottom"></textarea>
+        <input type="submit" id="button-search" value='Search'>
+    </form>
+</div>
+<iframe id="result-view" src="search" style="border: transparent"></iframe>
+<script type="text/javascript">
+    form = document.getElementById('form-words')
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();    // prevent page from refreshing
+        const formData = new FormData(form);  // grab the data inside the form fields
+        console.log(formData)
+        fetch('/search', {   // assuming the backend is hosted on the same server
+            method: 'POST',
+            body: formData,
+        }).then(function (response) {
+            // do something with the response if needed.
+            // If you want the table to be built only after the backend handles the request and replies, call buildTable() here.
+            document.getElementById('result-view').innerHTML = response.text()
+        });
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,12 @@
+0000000ffffffc3fc
+fffffcff3ffffff9f
+fffffffffffffffff
+fc00fffffffffffff
+fc0000fffffffffff
+fffff0ff0ffffffff
+c0000000000003f9f
+fffffffffffffffff
+fc00ffffff003ffff
+0000ffffff00003fc
+0000fff000ffc003c
+fffffcfffffffffff

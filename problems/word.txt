@@ -1,0 +1,6 @@
+fc00fffffffffffff
+fc00fff000fffffff
+0000000ffffc033ff
+0000000fffffff03f
+3ffff00fffffff03f
+3ffffffffffffc3fc

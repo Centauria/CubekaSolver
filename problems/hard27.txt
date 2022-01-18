@@ -1,0 +1,12 @@
+fc00fc003fffff000
+000000003fffc0000
+fc00fc0000ffff000
+fc00fc003f003f000
+fc00fc003f003f000
+fc00fc003fffff000
+fc00fc003fffff000
+0000000000f800000
+fffffffffffffffff
+fffffffffffffffff
+fc00000000ffff000
+0000fc003ffffc000

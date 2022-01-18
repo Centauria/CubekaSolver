@@ -1,0 +1,13 @@
+fc00000000fffffff
+00000000000000000
+0000000000ffc0000
+fc00ffffff003ffff
+000000ffffffff3ff
+000000fffffc033ff
+3ffff0fffffffc000
+fffffffffffffffff
+fffffffffffffffff
+000000ff0000003fc
+000000ff0ffffc3fc
+000000ff0ffffc3fc
+fffff0ff0ffffffff

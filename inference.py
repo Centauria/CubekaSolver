@@ -94,7 +94,7 @@ class Inference:
             bits = combinations(range(len(code_array_masked_part)), distance)
             for bit in bits:
                 code_altered = np.copy(code_array)
-                code_masked_altered = code_altered[mask == 1]
+                code_masked_altered = np.copy(code_array_masked_part)
                 for b in bit:
                     code_masked_altered[b] = not code_masked_altered[b]
                 code_altered[mask == 1] = code_masked_altered
@@ -190,8 +190,31 @@ if __name__ == '__main__':
     print(data)
     result = inf.infer_sequence(data, masks, args.max_distance, args.force_fuzzy)
     print(len(result))
-    for r in result:
-        print(readable(r))
+    if len(result) > 1000:
+        result_matrix = np.array(result)
+        aggregated = [np.unique(result_matrix[:, i], ) for i in range(result_matrix.shape[1])]
+        result_char_list = []
+        for item in aggregated:
+            if len(item) == 1:
+                result_char_list.append(chr(item[0] + ord('A')))
+            elif len(item) > 1:
+                char_list = map(lambda x: chr(x + ord('A')), item)
+                result_char_list.append(f'[{"|".join(char_list)}]')
+            else:
+                raise ValueError('This is not gonna happen')
+        print(''.join(result_char_list))
+        aggregated_tuple = [np.unique(result_matrix[:, i:i + 2], axis=0) for i in range(result_matrix.shape[1] - 1)]
+        for i, t in enumerate(aggregated_tuple):
+            p = len(t)
+            print(f'Between index {i} and {i + 1}: {p} possibilities')
+            if p < 50:
+                s = t + ord('A')
+                s = s.astype(np.uint8).view(f'S{s.shape[1]}')
+                pos_string = '|'.join([s[i, 0].decode() for i in range(s.shape[0])])
+                print(f'({pos_string})')
+    else:
+        for r in result:
+            print(readable(r))
     if args.calibrate:
         correct = input('Please input correct answer(empty line to cancel): ')
         if correct != '':
